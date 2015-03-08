@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Project_model extends BMS_Model
+class credit_card_model extends BMS_Model
 {
 	function __construct()
 	{
@@ -14,10 +14,10 @@ class Project_model extends BMS_Model
 	* @param	array		a_project_info
 	* @return	string		error (if there's any)
 	 */
-	function add($a_project_info)
+	function add($a_cc_info)
 	{
 		$s_errors['error'] = '';
-		if ($r_result = $this->db->insert('project', $a_project_info)) {
+		if ($r_result = $this->db->insert('creditcard', $a_cc_info)) {
 			return $r_result;
 		} else {
 			$s_errors['error'] = $this->db->_error_message();
@@ -31,10 +31,9 @@ class Project_model extends BMS_Model
 	* @param 	int 	i_project_id
 	* @return 	r_query Result Set	
 	*/
-	function get_info($i_project_id)
+	function get_info($i_cc_id)
 	{
-		$this->db->join('category', 'category.Cat_ID = project.Proj_CatID');
-		$this->db->where('project.Proj_ID', $i_project_id);
+		$this->db->where('creditcard.cc_id', $i_cc_id);
 		$r_query = $this->db->get('project');
 
 		if ($r_query->num_rows() > 0) {
@@ -84,7 +83,6 @@ class Project_model extends BMS_Model
 	*/
 	function update_approval($i_project_id, $data){
 		$this->db->where('Proj_ID', $i_project_id);
-		$this->db->update('project', $data); 
 	}
 
 /**

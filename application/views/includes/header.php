@@ -98,7 +98,7 @@
         					<span class="icon-bar"></span>
         					<span class="icon-bar"></span>
       						</button>
-      		    			<a class="navbar-brand logo" href="#"><img src ="<?=base_url()?>application/public/img/main/Logo.png" height="110"/></a>
+      		    			<a class="navbar-brand logo" href="<?=base_url()?>"><img src ="<?=base_url()?>application/public/img/main/Logo.png" height="110"/></a>
     					</div>
     						<div class = "container container-header">
     							<div class = "row header-links">
@@ -110,15 +110,6 @@
     								<button class="btn btn-default btn-lg btn-home btn-gquote pull-right"><a href="<?=base_url()?>booking">Book Now</a></button>
     							</div>
     						</div>
-   						 <!-- Collect the nav links, forms, and other content for toggling -->
-    					<div class="collapse navbar-collapse header-links" id="navbar">
-      							<ul class="nav navbar-nav navbar-right navbar-main">
-      						  		<li><a href="#">Reservation</a></li>
-      						  		<li><a href="#">Room</a></li>
-      						  		<li><a href="#"></a></li>
-      							</ul>
-      			
-    					</div><!-- /.navbar-collapse -->
  					</div><!-- /.container-fluid -->
 				</nav>
 

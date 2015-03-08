@@ -27,17 +27,15 @@ class Booking extends BMS_Controller
 	} //end of function __construct
 
 	function index(){	
-		$this->data['s_main_content'] = 'booking/initial';
-		$this->load->view('includes/template', $this->data);
-	}
 
-	function step2(){
 		$this->form_validation->set_rules('txt_cust_lname','Last Name', 'trim|required|xss_clean|min_length[3]');
 		$this->form_validation->set_rules('txt_cust_fname','First Name', 'trim|required|xss_clean|min_length[3]');
 		$this->form_validation->set_rules('txt_cust_address','Address', 'trim|required|xss_clean|min_length[3]');
 		$this->form_validation->set_rules('txt_cust_number','Customer Number', 'trim|required|xss_clean|min_length[9]|numeric');
 
 		if($this->form_validation->run()){
+			$this->session->unset_userdata('cust_id');
+			$this->load->model('customer_model');
 			$a_customer_db = array( 'txt_cust_lname'  => 'customer_fname',
 									'txt_cust_fname'  => 'customer_lname',
 									'txt_cust_address'  => 'customer_address',
@@ -52,12 +50,46 @@ class Booking extends BMS_Controller
 					}
 				}
 
-			$this->data['s_main_content'] = "booking/add_reservation";
-		}else{
-			$this->data['s_main_content'] = "booking/initial";
+			$i_cust_id = $this->customer_model->add($a_project_insert_db);
+			$this->session->set_userdata('cust_id', $i_cust_id);
+			redirect('/booking/step2');
+		} else {
+
+		$this->data['s_main_content'] = 'booking/initial';
 		}
 
+
 		$this->load->view('includes/template', $this->data);
+	}
+
+	function step2(){
+
+		//if($this->session->userdata('cust_id') != NULL) {
+
+			$this->form_validation->set_rules('date_check_in','Check in', 'trim|required|xss_clean|min_length[3]');
+			$this->form_validation->set_rules('date_check_out','Check out', 'trim|required|xss_clean|min_length[3]');
+			$this->form_validation->set_rules('rad_RoomType','Room Type', 'required');
+
+			if($this->form_validation->run()){
+				$this->load->model('bookinghotel_model');
+				$this->load->model('room_model');
+				$room_info = $this->room_model->get_room_info($this->input->post('rad_RoomType'));
+				$i_total_days = (strtotime($this->input->post('date_check_out')) - strtotime($this->input->post('date_check_in')))/3600/24;
+				$i_total_room_price =  ($room_info[0]->rooms_info_price) * $i_total_days;
+				$this->data['reservation_total'] = $i_total_room_price;
+				$a_reservation_details_info = array(
+
+													);
+			}
+
+
+			$this->data['results'] = $this->session->userdata('cust_id') ;
+			$this->data['s_main_content'] = "booking/add_reservation";
+			$this->load->view('includes/template', $this->data);
+		//}else{
+		//	redirect('/booking','refresh');
+		//}
+
 	}
 	
 }

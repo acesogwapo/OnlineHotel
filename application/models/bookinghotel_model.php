@@ -1,6 +1,6 @@
  <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Account_model extends BMS_Model
+class bookinghotel_model extends BMS_Model
 {
 	function __construct()
 	{

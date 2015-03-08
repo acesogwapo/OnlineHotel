@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_model extends BMS_Model
+class Room_model extends BMS_Model
 {
 	function __construct()
 	{
@@ -14,16 +14,50 @@ class Category_model extends BMS_Model
 	* @param	array		a_cat_info
 	* @return	string		error (if there's any)
 	 */
-	function add($a_cat_info)
+	function add($a_room_content)
 	{
 		$s_errors['error'] = '';
-		if ($r_result = $this->db->insert('category', $a_cat_info)) {
+		if ($r_result = $this->db->insert('room', $a_room_content)) {
+			update_room_info($a_room_content['room_type']);
 			return $r_result;
 		} else {
 			$s_errors['error'] = $this->db->_error_message();
 			return $s_errors;
 		}
 	} //end of function add
+
+
+	/**
+	* Returns the information of a particular Standard Program
+	* @scope 	public
+	* @param 	int 	centre id
+	* @param 	int 	standard program id
+	* @return 	r_query Result Set	
+	*/
+	function update_room($room_id,$data)
+	{
+		$this->db->where('room.room_id', $room_id,$data);
+	    $this->db->update('room', $data); 
+	} // end of function get_info
+
+	/**
+	* Returs a list of Standard Programs about the centre
+	* @scope 	public
+	* @param 	int 	centre id
+	* @return 	r_query Result Set	
+	*/
+	function get_room($room_id)
+	{
+		$this->db->where('room.room_id', $room_id);
+		$r_query = $this->db->get(`room`);
+
+		if ($r_query->num_rows() > 0) {
+			return $r_query->result();
+		} else {
+			return NULL;
+		}
+	}
+
 
 /**
 	* Returns the information of a particular Standard Program
@@ -32,18 +66,10 @@ class Category_model extends BMS_Model
 	* @param 	int 	standard program id
 	* @return 	r_query Result Set	
 	*/
-	function get_info($i_centre_id, $i_std_id)
+	function update_room_info($enum_room_info,$data)
 	{
-		$this->db->join('sap_centre_locations', 'sap_centre_locations.centre_id = sap_standard_programs.centre_id');
-		$this->db->where('sap_standard_programs.centre_id', $i_centre_id);
-		$this->db->where('sap_standard_programs.id', $i_std_id);
-		$r_query = $this->db->get(TBL_STANDARD_PROGRAMS);
-
-		if ($r_query->num_rows() > 0) {
-			return $r_query->row();
-		} else {
-			return NULL;
-		}
+		$this->db->where('rooms_info_type', $enum_room_info);
+	    $this->db->update('main_hotel_info', $data); 
 	} // end of function get_info
 
 /**
@@ -52,10 +78,10 @@ class Category_model extends BMS_Model
 	* @param 	int 	centre id
 	* @return 	r_query Result Set	
 	*/
-	function get_list($i_centre_id)
+	function get_room_info($enum_room_info)
 	{
-		$this->db->where('centre_id', $i_centre_id);
-		$r_query = $this->db->get(TBL_STANDARD_PROGRAMS);
+		$this->db->where('rooms_info_type', $enum_room_info);
+		$r_query = $this->db->get('main_hotel_info');
 
 		if ($r_query->num_rows() > 0) {
 			return $r_query->result();

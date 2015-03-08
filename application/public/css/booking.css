@@ -23,7 +23,7 @@
 
 }
 
-.form-input > form > input, .form-input > form > div > input{
+.form-input > div > input, .form-input >  div > input{
 
 	background: transparent;
 	color:#D3d3d3;
@@ -33,19 +33,24 @@
 	padding:5px;width: 60%;
 }
 
-.form-input > form > input:focus {
-	border-color:#D3D3D3;
-}
 
-.form-input > form > div {
+.form-input > div {
 	padding:10px;
 }
 
-.form-input > form > .address > input{
+.form-input > div > .address > input{
 	width:50%;
 	margin-left: 10px;
 }
 
 .submit-btn{
 	padding:20px;
+}
+
+.label-form{
+	font-size: 23px;
+}
+
+input[type="radio"]{
+	margin-left:20px;
 }
