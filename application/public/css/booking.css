@@ -1,0 +1,51 @@
+.page-wrap{
+	 background-image:url('../img/main/hotel-lobby.jpg');
+	background-size: cover;
+	background-color: #000000;
+}
+
+.mainbox{
+	background-color: rgba(132, 240, 230, 0.3);
+	border-style: solid;
+	border-color:#D3d3d3;
+	border-radius: 1px;
+	border-width: 1px;
+	height:100%;
+	color:#FEFEFE;
+}
+
+.mainbox > div{
+	padding:10px;
+}
+
+.header-info{
+	font-size:25px;
+
+}
+
+.form-input > form > input, .form-input > form > div > input{
+
+	background: transparent;
+	color:#D3d3d3;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: #FFFFFF;
+	padding:5px;width: 60%;
+}
+
+.form-input > form > input:focus {
+	border-color:#D3D3D3;
+}
+
+.form-input > form > div {
+	padding:10px;
+}
+
+.form-input > form > .address > input{
+	width:50%;
+	margin-left: 10px;
+}
+
+.submit-btn{
+	padding:20px;
+}

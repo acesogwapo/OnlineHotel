@@ -1,0 +1,120 @@
+/* Styles Specific for Admin Pages */
+/* ==========================================================================
+   Table CSS
+   ========================================================================== */
+
+/*table { width:100%; table-layout: fixed; }
+th,td, h3{
+  word-wrap:break-word;
+  overflow: hidden;
+}
+table.table td img{
+    width: 100%;
+    height: auto;
+}*/
+	.element::-webkit-scrollbar { width: 0 !important }
+
+.body{
+
+	  background-image:url('../img/main/bms_background.jpg');
+	  min-height: 100%;
+	  height: 102%;
+	  -webkit-filter: blur(0px);
+  	  -moz-filter: blur(0px); 
+  	  -ms-filter: blur(0px);
+   	  -o-filter: blur(0px);
+}
+
+
+.login-admin{
+
+	padding: 20px;
+	border-color:#FFFFFF;
+	background: #FFFFFF;
+}
+
+
+form > .form-control {
+	width:50%;
+	margin-bottom: 5px;
+	background: rgba(255,255,255,0);
+	color:#FFFFFF;
+
+}
+
+form > .form-control::-webkit-input-placeholder, .form-names::-webkit-input-placeholder{
+	color:#FFFFFF;
+}
+
+form > .form-control:-moz-placeholder, .form-names:-moz-placeholder {
+	color:#FFFFFF;
+}
+
+form > .form-control::-moz-placeholder, .form-names::-moz-placeholder{
+	color:#FFFFFF;
+}
+
+ form > .form-control:-ms-input-placeholder, .form-names:-ms-input-placeholder{
+ 	color:#FFFFFF;
+ }
+
+
+.b-transparent::-webkit-input-placeholder, .form-names::-webkit-input-placeholder{
+	color:#FFFFFF;
+}
+
+.b-transparent:-moz-placeholder, .form-names:-moz-placeholder {
+	color:#FFFFFF;
+}
+
+.b-transparent::-moz-placeholder, .form-names::-moz-placeholder{
+	color:#FFFFFF;
+}
+
+.b-transparent:-ms-input-placeholder, .form-names:-ms-input-placeholder{
+ 	color:#FFFFFF;
+ }
+
+.form-names{
+	width: 95%;
+	background: rgba(255,255,255,0);
+	color:#FFFFFF;
+}
+
+.table-custom > tbody > tr > td{
+	padding:5px;
+}
+
+.modal-content{
+	background:rgba(85, 85, 85, 0.5);
+}
+
+.btn-transparent{
+	background: transparent;
+	color:#9F9F9F;
+	padding: 20px 60px 20px 60px;
+	border-color: transparent;
+}
+.btn-transparent:active{
+	border-color: transparent;
+}
+
+
+.btn-transparent-form{
+	background: transparent;
+	color:#FFFFFF;
+}
+
+.modal {
+	color:#9F9F9F;
+}
+
+cwhite{
+	color:#FFFFFF;
+}
+
+
+.btn-li > a{
+	color:#9F9F9F;
+}
+
