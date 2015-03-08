@@ -49,7 +49,7 @@
             $('.carousel-custom').slick({
               dots: true,
               infinite: true,
-              speed: 1,
+              speed: 300,
               fade: true,
               slide: 'div',
               cssEase: 'linear'
