@@ -18,7 +18,6 @@ class Room_model extends BMS_Model
 	{
 		$s_errors['error'] = '';
 		if ($r_result = $this->db->insert('room', $a_room_content)) {
-			update_room_info($a_room_content['room_type']);
 			return $r_result;
 		} else {
 			$s_errors['error'] = $this->db->_error_message();

@@ -5,14 +5,13 @@
 }
 
 .mainbox{
-	background-color: rgba(132, 240, 230, 0.3);
-	border-style: solid;
+	background-color: rgba(0, 0, 0, 0.3);
 	border-color:#D3d3d3;
 	border-radius: 1px;
-	border-width: 1px;
+	border-width: 0.5px;
 	height:100%;
+	padding:50px;
 	color:#FEFEFE;
-	 box-shadow:2px 2px 2px 2px #000000;
 }
 
 .mainbox > div{
@@ -27,13 +26,23 @@
 .form-input > div > input, .form-input >  div > input{
 
 	background: transparent;
+	color:#FEFEFE;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: #FFFFFF;
+	padding:5px;
+	width: 60%;
+}
+
+textarea{
+	background: transparent;
 	color:#D3d3d3;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: #FFFFFF;
-	padding:5px;width: 60%;
+	padding:5px;
+	width: 60%;
 }
-
 
 .form-input > div {
 	padding:10px;
@@ -46,12 +55,28 @@
 
 .submit-btn{
 	padding:20px;
+	color:#FEFEFE;
 }
 
 .label-form{
 	font-size: 23px;
 }
 
+.label-pos{
+	text-align: right;
+}
+
+select > option {
+	background-color: transparent;
+}
+
+p {
+	text-align: center;
+}
 input[type="radio"]{
 	margin-left:20px;
+}
+
+input[type="submit"]{
+	color:#FEFEFE;
 }

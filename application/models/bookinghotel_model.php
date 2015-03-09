@@ -15,10 +15,10 @@ class bookinghotel_model extends BMS_Model
 	* @param	array		a_account_info
 	* @return	string		error (if there's any)
 	 */
-	function add($a_account_info)
+	function add($a_reservation_info)
 	{
 		$s_errors['error'] = '';
-		if ($this->db->insert('account', $a_account_info)) {
+		if ($this->db->insert('reservation', $a_reservation_info)) {
 			return $this->db->insert_id();
 		} else {
 			$s_errors['error'] = $this->db->_error_message();
@@ -33,19 +33,35 @@ class bookinghotel_model extends BMS_Model
 	* @param	array		a_account_info
 	* @return	string		error (if there's any)
 	 */
-	function get_account_number($i_user_id)
+	function get_hotel_rooms_info()
 	{
 
-		$this->db->where('account.MemberID', $i_user_id);
-		$r_query = $this->db->get('account');
+		$r_query = $this->db->get('main_hotel_info');
 
 		if ($r_query->num_rows() > 0) {
-			return $r_query->row()->AccNo;
+			return $r_query->result();
 		} else {
 			return NULL;
 		}
 	} //end of function add
 
+/**
+	* Get a user's account if it exists
+ 	* @scope	public
+	* @param	array		a_account_info
+	* @return	string		error (if there's any)
+	 */
+	function get_reservation_info($i_reservation_id)
+	{
+		$this->db->where('reservation.reservation_id', $i_reservation_id);
+		$r_query = $this->db->get('reservation');
+
+		if ($r_query->num_rows() > 0) {
+			return $r_query->row();
+		} else {
+			return NULL;
+		}
+	} //end of function add
 /**
 	* Updates the Person-in-charge credentials
  	* @scope	public
@@ -53,11 +69,10 @@ class bookinghotel_model extends BMS_Model
 	* @param	int			centre_id
 	* @return	string		error (if there's any)
 	 */
-	function update($a_credentials, $i_user_id)
+	function update_rooms_info($i_rooms_id, $a_rooms_update)
 	{
-		$s_errors['error'] = '';
-		$this->db->where('AccNo', $i_user_id);
-		if ($r_result = $this->db->update(TBL_USERS, $a_credentials)) {
+		$this->db->where('id', $i_rooms_id);
+		if ($r_result = $this->db->update('main_hotel_info', $a_rooms_update)) {
 			return $r_result;
 		} else {
 			$s_errors['error'] = $this->db->_error_message();

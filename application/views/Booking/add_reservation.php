@@ -1,22 +1,24 @@
 <div class="container mainbox">
 		<div class="row header-info">
-         <?php
-            if(isset($roomsinfo)){
-               print_r($roomsinfo);
-            }
-         ?>
          Reservation Details
 		</div>
 		<div class = "row">
 			<form action="<?php echo base_url(); ?>booking/step2" method="post"  enctype="multipart/form-data" class="form-horizontal" role="form" id = 'myFormId' >        
                <div class = "row form-input">
-                  <div class ="col-xs-5">
-                     Check In Date: <input type="date" placeholder="First Name" name="date_check_in"><br>
+                  <div class ="col-xs-2 label-pos">
+                     Check In Date:
                   </div>
+                  <div class ="col-xs-4">
+                     <input type="date" placeholder="Check in" name="date_check_in"><br>
+                  </div>
+               </div>
+               <div class = "row form-input">
 
-                  <div class ="col-xs-1"></div>
-                  <div class="col-xs-5">
-                     Check out Date: <input type="date" placeholder="Address" name="date_check_out"><br>
+                  <div class ="col-xs-2 label-pos">
+                     Check out Date:
+                  </div>
+                  <div class="col-xs-4">
+                     <input type="date" placeholder="Check out" name="date_check_out"><br>
                   </div>
                </div>
                <div class = "row">
@@ -24,31 +26,34 @@
                   Choose a Room:
                 </div>
                </div>
+               <?php foreach($roomsinfo as $rooms_info){?>
                <div class = "row">
-                  <div class="col-xs-5">
-                     <input type="radio" name="rad_RoomType" value="Bungalow">Bungalow (Price: PHP 3000 / night) <br>
+                  <div class="col-xs-2 label-pos">
+                     <input type="radio" name="rad_RoomType" value="<?=$rooms_info->rooms_info_type?>">
                   </div>
-               </div>
-               <div class = "row">
-                  <div class="col-xs-12">
-                     <input type="radio" name="rad_RoomType" value="Deluxe">Deluxe (Price: PHP 6000 / night) <br>
+                  <div class = "col-xs-4">
+                     <?=$rooms_info->rooms_info_type?> (Price: <?=$rooms_info->rooms_info_price?>/ night)
                   </div>
-               </div>
-               <div class = "row">
-                  <div class="col-xs-12">
-                     <input type="radio" name="rad_RoomType" value="Executive">Executive (Price: PHP 10000 / night) <br>
+       
+                  <div class="col-xs-2 label-pos"></div>
+                  <div class = "col-xs-4">
+                     <?php
+                        if($rooms_info->rooms_left < 5){
+                              echo 'There are only <b>'. $rooms_info->rooms_left.'</b> rooms left!';
+                        }
+
+                     ?>
                   </div>
-               </div>
-                <div class = "row">
-                  <div class="col-xs-12">
-                     <input type="radio" name="rad_RoomType" value="Presidential Suite">Presidential Suite(Price: PHP 10000 / night) <br>
-                  </div>
-               </div>
-               <div class = "row" style="margin: 20px;">
-                  <div class="col-xs-7"></div>
-                  <div class="col-xs-5" style="font-size:21px;">
-                     Total Payment: <?= (isset($reservation_total))?  $reservation_total :  0;?> PHP
-                  </div>
+               </div>          
+                <?php } ?>
+
+               <div class="row form-group" style="padding:20px;">
+                  <label for="sel1">Payment Type</label>
+                  <select class="form-control" name="ddn_payment_type" style="width:30%;">
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
+                  </select>
+
                </div>
                <div class = "row form-input">
                   <div class="col-xs-5"></div>
@@ -63,3 +68,34 @@
          </form>
       </div>
 </div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+      $('input[name="rad_RoomType"],input[name="date_check_in"],input[name="date_check_out"]').change(function(e) {
+        var total = 0;
+        var $row = $(this).parent();
+        var RoomType = $row.find('input[name="rad_RoomType"]').val();
+        var CheckIn= $row.find('input[name="date_check_in"]').val();
+        var CheckOut= $row.find('input[name="date_check_out"]').val();
+        var oneDay = 24*60*60*1000; 
+        //var diffDays = Math.round(Math.abs((CheckOut.getTime() - CheckIn.getTime())/(oneDay)));
+
+        total = RoomType * diffDays;
+        //update the row total
+        $row.find('.amount').text(total);
+
+        var total_amount = 0;
+        $('.amount').each(function() {
+            //Get the value
+            var am= $(this).text();
+            console.log(am);
+            //if it's a number add it to the total
+            if (IsNumeric(am)) {
+                total_amount += parseFloat(am, 10);
+            }
+         });
+         $('.total_amount').text(total_amount);
+      });
+   });
+
+</script>
