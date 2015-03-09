@@ -17,11 +17,11 @@ class Admin_model extends BMS_Model
 	*/
 	function login()
 	{
-		$this->db->where('Username', $this->input->post('txt_username'));
-		$this->db->where('Member_Pword', sha1(md5($this->input->post('txt_password'))));
+		$this->db->where('username', $this->input->post('txt_username'));
+		$this->db->where('admin_pass', sha1(md5($this->input->post('txt_password'))));
 
-		$r_query = $this->db->get('account');
-		if ($r_query->num_rows() == 1) {
+		$r_query = $this->db->get('admin');
+		if ($r_query->num_rows() > 0) {
 			return $r_query->row();
 		} else {
 			return FALSE;

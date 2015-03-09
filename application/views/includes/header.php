@@ -104,7 +104,7 @@
     							<div class = "row header-links">
     								<a class = "font-header" href="#">Contact us </a>
     								<div class = "font-header"> | </div>
-    								<a class = "font-header" href="#"> Admin Login</a>
+    								<a class = "font-header" href="<?=base_url()?>admin"> Admin Login</a>
     							</div>
     							<div class="row row-bookmark">
     								<button class="btn btn-default btn-lg btn-home btn-gquote pull-right"><a href="<?=base_url()?>booking">Book Now</a></button>

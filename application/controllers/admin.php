@@ -11,8 +11,8 @@ class Admin extends BMS_Controller
 		$this->data['s_page_type'] = 'admin';
 		$this->data['a_cs_scripts'] = array(
 			base_url() . 'application/public/css/main.css',
-
-			base_url() . 'application/public/css/admin_style.css',	
+			base_url() . 'application/public/css/booking.css',	
+           base_url() . 'application/public/css/admin_style.css',
 
 			);
 
@@ -31,8 +31,17 @@ class Admin extends BMS_Controller
 
 	function index(){	
 			$this->load->helper('file');
+        
+            $this->form_validation->set_rules('txt_username', 'Username', 'trim|required|xss_clean|min_length[3]');
+            $this->form_validation->set_rules('txt_password', 'password', 'trim|required|xss_clean|min_length[3]');
+        
+            if($this->form_validation->run()){
+                $this->load->model('admin_model');
+                $o_admin_info = $this->admin_model->login();   
+                $this->session->set_userdata('o_admin',$o_admin_info);
+            }
 
-			$this->data['s_main_content'] ='admin_login';
+			$this->data['s_main_content'] ='admin/login';
 			$this->load->view('includes/template', $this->data);
 
 
