@@ -115,7 +115,7 @@
 
 			</div>
 			<?php
-		}
+			}
 				if (isset($s_page_header)) {
 					switch ($s_page_header) {}
 

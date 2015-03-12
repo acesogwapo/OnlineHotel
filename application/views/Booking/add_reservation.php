@@ -29,7 +29,10 @@
                <?php foreach($roomsinfo as $rooms_info){?>
                <div class = "row">
                   <div class="col-xs-2 label-pos">
-                     <input type="radio" name="rad_RoomType" value="<?=$rooms_info->rooms_info_type?>">
+                    <?php if($rooms_info->rooms_left > 0){
+                            echo '<input type="radio" name="rad_RoomType" value="<?=$rooms_info->rooms_info_type?>">';
+                          }
+                    ?>
                   </div>
                   <div class = "col-xs-4">
                      <?=$rooms_info->rooms_info_type?> (Price: <?=$rooms_info->rooms_info_price?>/ night)
@@ -38,7 +41,7 @@
                   <div class="col-xs-2 label-pos"></div>
                   <div class = "col-xs-4">
                      <?php
-                        if($rooms_info->rooms_left < 5){
+                        if($rooms_info->rooms_left <= 5){
                               echo 'There are only <b>'. $rooms_info->rooms_left.'</b> rooms left!';
                         }
 

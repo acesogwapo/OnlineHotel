@@ -33,7 +33,6 @@ class Admin extends BMS_Controller
 	function index(){	
 			$this->load->helper('file');
         
-        if($this->session->userdata('o_admin') != NULL){
             $this->form_validation->set_rules('txt_username', 'Username', 'trim|required|xss_clean|min_length[3]');
             $this->form_validation->set_rules('txt_password', 'password', 'trim|required|xss_clean|min_length[3]');
             if($this->form_validation->run()){
@@ -42,13 +41,17 @@ class Admin extends BMS_Controller
                 $this->session->set_userdata('o_admin',$o_admin_info);
                 redirect('admin/reservations');
             }
-        }
 
 			$this->data['s_main_content'] ='admin/login';
 			$this->load->view('includes/template', $this->data);
 
 
 	} //end of function index
+
+	function logout(){
+		$this->session->sess_destroy();
+		redirect('admin');
+	}
 
 	function  reservations(){
 		if($this->session->userdata('o_admin') != NULL){
@@ -68,24 +71,36 @@ class Admin extends BMS_Controller
 			$this->load->model('credit_card_model');
 
 
-			$a_reservation_data = $this->bookinghotel_model($reserve_id);
+			$a_reservation_data = $this->bookinghotel_model->get_reservation_info($reserve_id);
 
 			if($a_reservation_data != NULL){
 					if($a_reservation_data->payment_type == 'Credit'){
-						$this->credit_card_model->delete_cc_info($reserve_id);s
+						$this->credit_card_model->delete_cc_info($reserve_id);
 					}
-					$o_room_info = $this->room_model->get_reserve_room($reserve_id);
-					$a_room_update['rooms_left'] = $o_room_info->rooms_left;
-					$this->bookinghotel_model->update_rooms_info($o_room_info->rooms_info_type, );
-					$this->room_model->delete_room_reservation($reserve_id);
-					$this->data['a_table_project_data'] = $this->bookinghotel_model->delete_reservation_info($reserve_id);
-					$this->bookinghotel_model->
 
+					$a_rooms_id = array('1' => 'Bungalow', 
+										'2' => 'Deluxe', 
+										'3' => 'Executive', 
+										'4' => 'Presidential Suite' 																		
+										);
+
+
+					$o_room_info = $this->room_model->get_reserve_room($reserve_id);
+					$o_main_room = $this->room_model->get_room_info($o_room_info[0]->room_type);
+					$a_room_update['rooms_left'] = ($o_main_room[0]->rooms_left) + 1;
+
+					foreach( $a_rooms_id as $key => $value){
+						if($value == $o_main_room[0]->rooms_info_type){
+							 $i_main_hotel_info_id = $key;
+						}
+					}
+					$this->bookinghotel_model->update_rooms_info($i_main_hotel_info_id, $a_room_update);
+					$this->room_model->delete_room_reservation($reserve_id);
+					$this->bookinghotel_model->delete_reservation_info($reserve_id);	
 			}
-			redirect('admin/reservations');	
-		}else{
-			redirect('admin', 'refresh');
 		}
+
+		redirect('admin/reservations');	
 
 	}
 

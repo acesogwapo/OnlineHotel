@@ -35,7 +35,7 @@ class Room_model extends BMS_Model
 	*/
 	function update_room($room_id,$data)
 	{
-		$this->db->where('room.room_id', $room_id,$data);
+		$this->db->where('room.room_id', $room_id);
 	    $this->db->update('room', $data); 
 	} // end of function get_info
 
@@ -59,7 +59,7 @@ class Room_model extends BMS_Model
 	function get_room($room_id)
 	{
 		$this->db->where('room.room_id', $room_id);
-		$r_query = $this->db->get(`room`);
+		$r_query = $this->db->get('room');
 
 		if ($r_query->num_rows() > 0) {
 			return $r_query->result();
@@ -71,7 +71,7 @@ class Room_model extends BMS_Model
 
 	function get_reserve_room($i_reservation_id){
 		$this->db->where('room.room_reservation_id', $i_reservation_id);
-		$r_query = $this->db->get(`room`);
+		$r_query = $this->db->get('room');
 
 		if ($r_query->num_rows() > 0) {
 			return $r_query->result();

@@ -1,4 +1,9 @@
 <div class="container mainbox">
+   <?php if($s_page_title == 'Admin' && $this->session->userdata('o_admin') != NULL){ ?>
+            <div class="row" style="position: float;">
+               <a href="<?=base_url()?>admin/logout">Logout</a>
+            </div>
+   <?php } ?>
       <div class="row">
             <div class="col-sm-5">
             </div>
@@ -39,7 +44,7 @@
                               <td> '. $value->payment_type.' </td>
                               <td> '. $value->reservation_confirmation_code.' </td>
                               <td> '. $value->reservation_totalpayment.' </td>              
-                              <td><button class="btn btn-info btn-sm" onclick="addRowToTable('. $i_count.');">Approve</button>&nbsp<a href ="'.base_url().'admin/delete/'.$value->reservation_id.'"><button class="btn btn-success btn-sm">Cancel</button></td>
+                              <td><a href ="'.base_url().'admin/delete/'.$value->reservation_id.'"><button class="btn btn-success btn-sm">Cancel</button></td>
                            </tr>';
                         $i_count++;
                         }
@@ -47,6 +52,11 @@
                      </tbody>
                   </table>
             </div>
-         <?php   } ?>
+         <?php   }else{ ?>
+            <div class="row">
+               <p> You currently have no reservation </p>
+            </div>
+
+         <?php }?>
       </div>
 </div>
