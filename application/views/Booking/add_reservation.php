@@ -9,7 +9,7 @@
                      Check In Date:
                   </div>
                   <div class ="col-xs-4">
-                     <input type="date" placeholder="Check in" name="date_check_in" required><br>
+                     <input type="date" placeholder="Check in" name="date_check_in" required><br> <?php if(isset($s_date_error_1)){echo $s_date_error_1;}?><br> 
                   </div>
                </div>
                <div class = "row form-input">
@@ -18,7 +18,7 @@
                      Check out Date:
                   </div>
                   <div class="col-xs-4">
-                     <input type="date" placeholder="Check out" name="date_check_out" required><br>
+                     <input type="date" placeholder="Check out" name="date_check_out" required><br><?php if(isset($s_date_error_2)){echo $s_date_error_2;}?><br>
                   </div>
                </div>
                <div class = "row">
@@ -30,7 +30,7 @@
                <div class = "row">
                   <div class="col-xs-2 label-pos">
                     <?php if($rooms_info->rooms_left > 0){
-                            echo '<input type="radio" name="rad_RoomType" value="<?=$rooms_info->rooms_info_type?>">';
+                            echo '<input type="radio" name="rad_RoomType" value="'.$rooms_info->rooms_info_type.'">';
                           }
                     ?>
                   </div>

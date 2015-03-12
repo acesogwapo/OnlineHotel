@@ -45,7 +45,7 @@
                       <div class="col-sm-1"></div>
                       <div class="col-sm-11">
                         <p> You have Chosen Cash as form of payment. Please pay in the front desk when you check in</p>
-                        <a href="'.base_url().'booking/complete">Click Here</a> to proceed to the next page.
+                        <a href="'.base_url().'booking/final_book">Click Here</a> to proceed to the Home page.
                       </div>
                     </div>';
       } ?> 

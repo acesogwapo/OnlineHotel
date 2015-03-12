@@ -27,7 +27,7 @@ class credit_card_model extends BMS_Model
 
 
 	function delete_cc_info($i_reservation_id){
-		$this->db->where('reservation.reservation_reservation_id', $i_reservation_id);
+		$this->db->where('creditcard.reservation_reservation_id', $i_reservation_id);
 		if($r_query = $this->db->delete('creditcard')){
 			return $r_query;
 		}else{

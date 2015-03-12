@@ -92,22 +92,16 @@
   					<div class="container-fluid navbar-transparent">
    		 				<!-- Brand and toggle get grouped for better mobile display -->
     					<div class="navbar-header">
-      						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-       						<span class="sr-only">Toggle navigation</span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-      						</button>
       		    			<a class="navbar-brand logo" href="<?=base_url()?>"><img src ="<?=base_url()?>application/public/img/main/Logo.png" height="110"/></a>
     					</div>
     						<div class = "container container-header">
-    							<div class = "row header-links">
-    								<a class = "font-header" href="#">Contact us </a>
-    								<div class = "font-header"> | </div>
-    								<a class = "font-header" href="<?=base_url()?>admin"> Admin Login</a>
-    							</div>
     							<div class="row row-bookmark">
-    								<button class="btn btn-default btn-lg btn-home btn-gquote pull-right"><a href="<?=base_url()?>booking">Book Now</a></button>
+    								<div class = "row">
+    								<a class = "font-header col-sm-4" href="<?=base_url()?>admin"> Admin Login</a>
+    								</div>
+    								<div class= "row">
+    								<a href="<?=base_url()?>booking"><button class="btn btn-default btn-lg btn-home btn-gquote pull-right">Book Now</button></a>
+    								</div>
     							</div>
     						</div>
  					</div><!-- /.container-fluid -->

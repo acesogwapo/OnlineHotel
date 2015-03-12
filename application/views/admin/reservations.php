@@ -8,8 +8,7 @@
             <div class="col-sm-5">
             </div>
             <div class ="col-sm-4 header-info">
-                Reservations
-            </div>
+             </div>
             <div class="col-sm-3"></div>
       </div>
       <div class = "row">
