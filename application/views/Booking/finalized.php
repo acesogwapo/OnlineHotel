@@ -10,7 +10,7 @@
                    Credit Card No.
                   </div>
                   <div class ="col-sm-4">
-                    <input type="text" name="txt_cc_no">
+                    <input type="text" name="txt_cc_no" required>
                   </div>
                 </div>
                 <div class="row form-input">
@@ -18,7 +18,7 @@
                    Pin No.
                   </div>
                   <div class ="col-sm-4">
-                    <input type="text" name="txt_cc_pin">
+                    <input type="text" name="txt_cc_pin" required>
                   </div>
                 </div>
                <div class="row form-input">
@@ -26,7 +26,7 @@
                    Expiration Date
                   </div>
                   <div class ="col-sm-4">
-                    <input type="date" name="date_cc_expiration">
+                    <input type="date" name="date_cc_expiration" required>
                   </div>
                 </div>
     

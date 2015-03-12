@@ -32,7 +32,6 @@ class Booking extends BMS_Controller
 		$this->form_validation->set_rules('txt_cust_fname','First Name', 'trim|required|xss_clean|min_length[3]');
 		$this->form_validation->set_rules('txt_cust_address','Address', 'trim|required|xss_clean|min_length[3]');
 		$this->form_validation->set_rules('txt_cust_number','Customer Number', 'trim|required|xss_clean|min_length[9]|numeric');
-
 		if($this->form_validation->run()){
 			$this->session->unset_userdata('cust_id');
 			$this->load->model('customer_model');
@@ -54,6 +53,7 @@ class Booking extends BMS_Controller
 			$this->session->set_userdata('cust_id', $i_cust_id);
 			redirect('/booking/step2');
 		} else {
+		$this->session->sess_destroy();	
 
 		$this->data['s_main_content'] = 'booking/initial';
 		}
@@ -87,7 +87,8 @@ class Booking extends BMS_Controller
 													 'reservation_checkout' 	=> $this->input->post('date_check_out'),
 													 'reservation_totalpayment' => $i_total_room_price,
 													 'payment_type' 			=> $this->input->post('ddn_payment_type'),
-													 'customer_customer_id'		=> $this->session->userdata('cust_id')
+													 'customer_customer_id'		=> $this->session->userdata('cust_id'),
+													 'reservation_confirmation_code' =>  idate('H',date('Y-m-d')) + $this->session->userdata('cust_id')
 													);
 
 				$i_reserve_id = $this->bookinghotel_model->add($a_reservation_details_info);
@@ -161,6 +162,8 @@ class Booking extends BMS_Controller
 					$this->credit_card_model->add($a_cc_info);
 					$this->session->set_userdata('complete','complete');
 					redirect('booking/complete');
+				}elseif($this->data['reservation_info']->payment_type == 'Cash'){
+					$this->session->set_userdata('complete','complete');
 				}
 			}
 

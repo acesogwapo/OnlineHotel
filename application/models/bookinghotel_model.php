@@ -45,6 +45,17 @@ class bookinghotel_model extends BMS_Model
 		}
 	} //end of function add
 
+
+	function delete_reservation_info($i_reservation_id){
+		$this->db->where('reservation.reservation_id', $i_reservation_id);
+		if($r_query = $this->db->delete('reservation')){
+			return $r_query;
+		}else{
+			return NULL;
+		}
+
+	}
+
 /**
 	* Get a user's account if it exists
  	* @scope	public
@@ -62,6 +73,24 @@ class bookinghotel_model extends BMS_Model
 			return NULL;
 		}
 	} //end of function add
+
+/**
+	* Get a user's account if it exists
+ 	* @scope	public
+	* @param	array		a_account_info
+	* @return	string		error (if there's any)
+	 */
+	function get_all_reservation_info()
+	{
+		$r_query = $this->db->get('reservation');
+
+		if ($r_query->num_rows() > 0) {
+			return $r_query->result();
+		} else {
+			return NULL;
+		}
+	} //end of function add
+
 /**
 	* Updates the Person-in-charge credentials
  	* @scope	public

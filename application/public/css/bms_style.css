@@ -1,19 +1,12 @@
-.body{
 
-	  background-image:url('../img/main/bms_background.jpg');
-}
-
-#body-background, #nav-container{
-  display:none;
-}
 
 /* ==========================================================================
    BMS Index
    ========================================================================== */
 .intro-project{
 	position: absolute;
-	top: calc(50% - 75px);
-	left: calc(50% - 300px);
+	top: calc(70% - 75px);
+	left: calc(32% - 300px);
 	margin: 10px -15px;
 	height: 150px;
 	width: auto;
@@ -24,8 +17,8 @@
 
 .intro-project-table{
 	position: absolute;
-	top: calc(35% - 176px);
-	left: calc(40% - 300px);
+	top: calc(45% - 176px);
+	left: calc(32% - 300px);
 	margin: 10px -15px;
 	height: 150px;
 	width: auto;
@@ -77,7 +70,7 @@ a {
 	top: calc(50% - 240px);
 	left: calc(50% - 300px);
 	margin: 10px -15px;
-	height: 150px;
+	height: 150px;		
 	width: auto;
 	color: white;
 	padding: 10px;

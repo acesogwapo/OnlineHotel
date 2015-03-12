@@ -9,13 +9,14 @@
          				First Name:
          			</div>
          			<div class ="col-sm-4">
-         				 <input type="text" placeholder="First Name" name="txt_cust_fname">
+         				 <input type="text" placeholder="First Name" name="txt_cust_fname" required>
+                      <?php if(isset($s_error_fname)) { echo 'Invalid input'; }?>
          			</div>
          			<div class ="col-sm-2 label-pos">
          				Last Name: 
          			</div>
          			<div class ="col-sm-4">
-         			 	<input type="text" placeholder="Last Name" name="txt_cust_lname"><br>
+         			 	<input type="text" placeholder="Last Name" name="txt_cust_lname" required><br>
          			</div>
          		</div>
          		<div class = "row form-input">
@@ -23,7 +24,7 @@
          				Address:
          			</div>
          			<div class = "col-sm-10">
-         				<textarea placeholder="(Street.House No. , Location Name, Street Name, Barangay, City, Province)" rows="4" cols="50" name="txt_cust_address"></textarea>
+         				<textarea placeholder="(Street.House No. , Location Name, Street Name, Barangay, City, Province)" rows="4" cols="50" name="txt_cust_address" required></textarea>
          			</div>
          		</div>
          		<div class = "row form-input">
@@ -32,7 +33,7 @@
          			</div>
          			<div class="col-sm-4">
 
-         				<input type="text" placeholder="Contact No. ex. +639225555555" name="txt_cust_number"><br>
+         				<input type="text" placeholder="Contact No. ex. +639225555555" name="txt_cust_number" required><br>
          			</div>
          			<div class="col-sm-7"></div>
          		</div>

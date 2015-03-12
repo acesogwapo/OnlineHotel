@@ -45,6 +45,17 @@ class Room_model extends BMS_Model
 	* @param 	int 	centre id
 	* @return 	r_query Result Set	
 	*/
+
+	function delete_room_reservation($i_reservation_id){
+		$this->db->where('room.room_reservation_id', $i_reservation_id);
+		if($r_query = $this->db->delete('room')){
+			return $r_query;
+		}else{
+			return NULL;
+		}
+
+
+	}
 	function get_room($room_id)
 	{
 		$this->db->where('room.room_id', $room_id);
@@ -55,6 +66,19 @@ class Room_model extends BMS_Model
 		} else {
 			return NULL;
 		}
+	}
+
+
+	function get_reserve_room($i_reservation_id){
+		$this->db->where('room.room_reservation_id', $i_reservation_id);
+		$r_query = $this->db->get(`room`);
+
+		if ($r_query->num_rows() > 0) {
+			return $r_query->result();
+		} else {
+			return NULL;
+		}
+
 	}
 
 

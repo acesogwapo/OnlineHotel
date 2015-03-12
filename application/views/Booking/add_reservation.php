@@ -9,7 +9,7 @@
                      Check In Date:
                   </div>
                   <div class ="col-xs-4">
-                     <input type="date" placeholder="Check in" name="date_check_in"><br>
+                     <input type="date" placeholder="Check in" name="date_check_in" required><br>
                   </div>
                </div>
                <div class = "row form-input">
@@ -18,7 +18,7 @@
                      Check out Date:
                   </div>
                   <div class="col-xs-4">
-                     <input type="date" placeholder="Check out" name="date_check_out"><br>
+                     <input type="date" placeholder="Check out" name="date_check_out" required><br>
                   </div>
                </div>
                <div class = "row">

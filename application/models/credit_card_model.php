@@ -25,6 +25,17 @@ class credit_card_model extends BMS_Model
 		}
 	} //end of function add
 
+
+	function delete_cc_info($i_reservation_id){
+		$this->db->where('reservation.reservation_reservation_id', $i_reservation_id);
+		if($r_query = $this->db->delete('creditcard')){
+			return $r_query;
+		}else{
+			return NULL;
+		}
+
+	}
+
 /**
 	* Returns the information of a particular Project
 	* @scope 	public
